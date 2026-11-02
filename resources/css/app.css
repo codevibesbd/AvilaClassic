@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-serif: 'Cormorant Garamond', Georgia, Cambria, serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Authentic Luxury Human Palette: Warm Paper, Deep Carbon, Saddle Leather */
+    --color-paper: #FAF8F5;
+    --color-paper-light: #FFFFFF;
+    --color-paper-muted: #F2EFE9;
+    --color-paper-border: #E5E1D8;
+    --color-paper-border-strong: #D5CFC3;
+    
+    --color-ink: #141517;
+    --color-ink-muted: #5C5E64;
+    --color-ink-subtle: #8A8C93;
+    
+    /* Primary & Secondary Brand Tokens */
+    --color-primary: #141517;
+    --color-primary-hover: #282A30;
+    
+    --color-secondary: #FA8231;
+    --color-secondary-hover: #E06D20;
+    --color-secondary-light: #FFF4EB;
+
+    --color-saddle: #FA8231;
+    --color-saddle-hover: #E06D20;
+    --color-saddle-light: #FFF4EB;
+    
+    --color-atelier-dark: #111215;
+    --color-atelier-card: #18191D;
+    --color-atelier-border: #282A30;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #FAF8F5;
+        color: #141517;
+        font-family: var(--font-sans);
+    }
+
+    ::selection {
+        background-color: #FA8231;
+        color: #FFFFFF;
+    }
+
+    h1, h2, h3, .font-editorial {
+        font-family: var(--font-serif);
+        letter-spacing: -0.015em;
+    }
+}
+
+/* Authentic Tactile Utilities (Real human craft details, no AI neon glow) */
+.editorial-title {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.spec-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: -0.02em;
+}
+
+/* Clean, crisp hairline dividers reminiscent of bespoke lookbooks & architectural drawings */
+.hairline-border {
+    border-color: #E5E1D8;
+}
+
+.hairline-border-dark {
+    border-color: #282A30;
+}
+
+/* Subtle physical paper lift */
+.paper-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E1D8;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.paper-card:hover {
+    border-color: #FA8231;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -10px rgba(20, 21, 23, 0.08);
+}
+
+/* Technical blueprint swatch */
+.swatch-border {
+    border: 1px solid rgba(20, 21, 23, 0.12);
+}
+
+/* Studio dark card */
+.atelier-card {
+    background-color: #18191D;
+    border: 1px solid #282A30;
+    transition: all 0.25s ease;
+}
+
+.atelier-card:hover {
+    border-color: #FA8231;
+}
