@@ -46,7 +46,7 @@
                         Enterprise Heritage • Victor Bags Group
                     </span>
                 </div>
-                <h1 class="font-serif text-4xl sm:text-6xl font-medium text-[#141517] tracking-tight leading-[1.1]">
+                <h1 class="font-serif text-4xl sm:text-6xl font-medium text-[#141517] tracking-tight leading-[1.1] text-balance">
                     Two decades of manufacturing expertise. Direct to U.S. retail.
                 </h1>
                 <p class="text-base sm:text-lg text-[#5C5E64] font-light leading-relaxed">
@@ -85,7 +85,7 @@
                     <span class="text-[10px] font-mono uppercase tracking-widest text-[#FA8231]">
                         The Maker's Story
                     </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#141517] leading-tight">
+                    <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#141517] leading-tight text-balance">
                         Direct-from-manufacturer supply, without the import barriers.
                     </h2>
 
@@ -104,15 +104,15 @@
                     <!-- Highlights Strip -->
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-[#F2EFE9]">
                         <div class="p-4 bg-[#FAF8F5] border border-[#E5E1D8]">
-                            <span class="block font-serif text-3xl font-bold text-[#141517]">20+</span>
+                            <span class="block font-serif text-3xl font-bold text-[#141517] tabular-nums">20+</span>
                             <span class="text-[11px] font-mono text-[#8A8C93]">Years Executive Leadership</span>
                         </div>
                         <div class="p-4 bg-[#FAF8F5] border border-[#E5E1D8]">
-                            <span class="block font-serif text-3xl font-bold text-[#141517]">200K</span>
+                            <span class="block font-serif text-3xl font-bold text-[#141517] tabular-nums">200K</span>
                             <span class="text-[11px] font-mono text-[#8A8C93]">Monthly Unit Capacity</span>
                         </div>
                         <div class="p-4 bg-[#FAF8F5] border border-[#E5E1D8]">
-                            <span class="block font-serif text-3xl font-bold text-[#141517]">100%</span>
+                            <span class="block font-serif text-3xl font-bold text-[#141517] tabular-nums">100%</span>
                             <span class="text-[11px] font-mono text-[#8A8C93]">C-TPAT & BSCI Certified</span>
                         </div>
                     </div>
@@ -124,6 +124,9 @@
                         <div class="aspect-[4/5] overflow-hidden bg-[#F2EFE9]">
                             <img src="https://images.unsplash.com/photo-1581553680321-4fffae59fccd?auto=format&fit=crop&w=1200&q=80" 
                                  alt="Pattern cutter with scissors and leather swatches" 
+                                 width="1200"
+                                 height="1500"
+                                 loading="lazy"
                                  class="w-full h-full object-cover">
                         </div>
                         <div class="mt-3 px-1 py-1 flex items-center justify-between text-[11px] font-mono text-[#5C5E64] border-t border-[#E5E1D8]">

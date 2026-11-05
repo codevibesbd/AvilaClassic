@@ -3,56 +3,95 @@
 @section('title', 'Avila Classic | Factory-Direct Luggage & Backpack Wholesale Distributor')
 @section('meta_description', 'Avila Classic Trading Inc. is the U.S. wholesale distribution affiliate of Victor Bags Factory Ltd. (Bangladesh). Factory pricing from U.S. stock, lower MOQs, 1,100+ workforce, 200,000 units/mo capacity, C-TPAT and BSCI certified.')
 
+@section('schema')
+<link rel="preload" as="image" href="{{ asset('images/hero/slide-1-backpack.jpg') }}">
+@endsection
+
 @section('content')
 
     <!-- HERO SECTION: THE MAKER'S MANIFESTO (Full Background Image Slider) -->
-    <section id="hero-bg-slider-section" class="relative border-b border-[#282A30] bg-[#141517] min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden select-none">
+    <section id="hero-bg-slider-section" aria-roledescription="carousel" aria-label="Featured Product Blueprints" class="relative border-b border-[#282A30] bg-[#141517] min-h-[640px] lg:min-h-[720px] flex items-center overflow-hidden select-none">
         
         <!-- Full-Bleed Background Slider Stage -->
-        <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 z-0" aria-live="polite">
             <!-- Slide 1: Technical Backpack -->
             <div class="hero-bg-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100 z-10"
+                 role="group"
+                 aria-roledescription="slide"
+                 aria-label="1 of 4: Technical Commuter Aeropack Pro"
                  data-category="Discipline 01 // Technical Commuter"
                  data-sku="AVC-BP-001"
                  data-title="Aeropack Pro Executive 28L"
                  data-spec="1680D Ballistic Nylon • YKK AquaGuard®">
                 <img src="{{ asset('images/hero/slide-1-backpack.jpg') }}" 
                      alt="Avila Classic Aeropack Pro Executive Technical Backpack" 
+                     width="1920" 
+                     height="1080" 
+                     fetchpriority="high"
                      class="w-full h-full object-cover object-center transform scale-100 transition-transform duration-[8000ms] ease-out">
             </div>
 
             <!-- Slide 2: Hardshell Polycarbonate Luggage -->
             <div class="hero-bg-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none z-0"
+                 role="group"
+                 aria-roledescription="slide"
+                 aria-label="2 of 4: Polycarbonate Luggage Spinner"
                  data-category="Discipline 02 // Polycarbonate Luggage"
                  data-sku="AVC-LG-001"
                  data-title="TransGlobal Polycarbonate Spinner 30&quot;"
                  data-spec="Virgin Bayer Makrolon® • Hinomoto 360°">
                 <img src="{{ asset('images/hero/slide-2-luggage.jpg') }}" 
                      alt="Avila Classic TransGlobal Polycarbonate Hardshell Luggage" 
+                     width="1920" 
+                     height="1080" 
+                     loading="lazy"
                      class="w-full h-full object-cover object-center transform scale-100 transition-transform duration-[8000ms] ease-out">
             </div>
 
             <!-- Slide 3: Heritage Waxed Canvas & Leather Travel Gear -->
             <div class="hero-bg-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none z-0"
+                 role="group"
+                 aria-roledescription="slide"
+                 aria-label="3 of 4: Heritage Field Pack"
                  data-category="Discipline 03 // Heritage Field Pack"
                  data-sku="AVC-BP-003"
                  data-title="Nomad Heritage Field Pack 30L"
                  data-spec="18oz Paraffin Canvas • Full-Grain Leather">
                 <img src="{{ asset('images/hero/slide-3-duffle.jpg') }}" 
                      alt="Avila Classic Nomad Heritage Field Pack" 
+                     width="1920" 
+                     height="1080" 
+                     loading="lazy"
                      class="w-full h-full object-cover object-center transform scale-100 transition-transform duration-[8000ms] ease-out">
             </div>
 
             <!-- Slide 4: All-Weather Field & Commuter Pack -->
             <div class="hero-bg-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none z-0"
+                 role="group"
+                 aria-roledescription="slide"
+                 aria-label="4 of 4: Waxed Expedition Pack"
                  data-category="Discipline 04 // Waxed Expedition Pack"
                  data-sku="AVC-BC-002"
                  data-title="Metro Heritage Commuter Pack 24L"
                  data-spec="Waxed Cotton Twill • Solid Brass Rivets">
                 <img src="{{ asset('images/hero/slide-4-commuter.jpg') }}" 
                      alt="Avila Classic Metro Heritage Commuter Pack" 
+                     width="1920" 
+                     height="1080" 
+                     loading="lazy"
                      class="w-full h-full object-cover object-center transform scale-100 transition-transform duration-[8000ms] ease-out">
             </div>
+        </div>
+
+        <!-- Autoplay Controls Bar for Accessibility -->
+        <div class="absolute bottom-6 right-6 z-20 flex items-center gap-2">
+            <button type="button" 
+                    id="slider-pause-btn" 
+                    aria-label="Pause slideshow"
+                    class="min-w-[44px] min-h-[44px] px-3 py-2 bg-black/60 hover:bg-black/80 text-white text-[11px] font-mono uppercase tracking-wider backdrop-blur-md border border-white/20 transition-colors inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231]">
+                <span id="slider-pause-icon" aria-hidden="true">&#10074;&#10074;</span>
+                <span id="slider-pause-text">Pause</span>
+            </button>
         </div>
 
         <!-- Editorial Contrast Scrims (Ensures 100% WCAG AAA Text Legibility across all screens) -->
@@ -73,23 +112,23 @@
                     </div>
 
                     <!-- Authentic Editorial Headline -->
-                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-[64px] font-medium text-white leading-[1.08] tracking-tight">
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-[64px] font-medium text-white leading-[1.08] tracking-tight text-balance">
                         15 production lines in Bangladesh. <span class="italic font-normal text-[#FA8231]">Factory-direct U.S. supply.</span>
                     </h1>
 
                     <!-- Grounded, Honest Copy -->
                     <p class="text-base sm:text-lg text-stone-200 leading-relaxed max-w-2xl font-light">
-                        We are <strong class="text-white font-medium">Avila Classic Trading Inc.</strong>, the U.S. wholesale distribution affiliate of <strong class="text-white font-medium">Victor Bags Factory Ltd.</strong> We supply high-grade luggage, technical backpacks, and travel gear from U.S. stock at factory pricing, offering lower MOQs and faster replenishment for retailers, e-commerce brands, and corporate buyers.
+                        We are <strong class="text-white font-medium">Avila&nbsp;Classic Trading&nbsp;Inc.</strong>, the U.S. wholesale distribution affiliate of <strong class="text-white font-medium">Victor Bags Factory Ltd.</strong> We supply high-grade luggage, technical backpacks, and travel gear from U.S. stock at factory pricing, offering lower MOQs and faster replenishment for retailers, e-commerce brands, and corporate buyers.
                     </p>
 
                     <!-- Direct Actions -->
                     <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                         <a href="{{ route('products.index') }}" 
-                           class="px-8 py-4 bg-[#FA8231] text-white text-xs uppercase tracking-wider font-semibold text-center hover:bg-[#e07126] transition-colors shadow-sm">
+                           class="min-h-[44px] px-8 py-4 bg-[#FA8231] text-white text-xs uppercase tracking-wider font-semibold text-center hover:bg-[#e07126] transition-colors shadow-sm inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
                             Inspect 12 Catalog Pieces &rarr;
                         </a>
                         <a href="{{ route('manufacturing') }}" 
-                           class="px-8 py-4 bg-white/10 text-white border border-white/20 backdrop-blur-sm text-xs uppercase tracking-wider font-semibold text-center hover:bg-white/20 transition-colors">
+                           class="min-h-[44px] px-8 py-4 bg-white/10 text-white border border-white/20 backdrop-blur-sm text-xs uppercase tracking-wider font-semibold text-center hover:bg-white/20 transition-colors inline-flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231]">
                             The Factory & QA Standards
                         </a>
                     </div>
@@ -97,15 +136,15 @@
                     <!-- Operational Assurance Chips -->
                     <div class="pt-6 border-t border-white/15 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs font-mono text-stone-300">
                         <span class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]" aria-hidden="true"></span>
                             <span class="text-white font-medium">C-TPAT & BSCI</span> Certified Facility
                         </span>
                         <span class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]"></span>
-                            <span class="text-white font-medium">200,000</span> Units Monthly Capacity
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]" aria-hidden="true"></span>
+                            <span class="text-white font-medium tabular-nums">200,000</span> Units Monthly Capacity
                         </span>
                         <span class="flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]"></span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]" aria-hidden="true"></span>
                             <span class="text-white font-medium">U.S. Stock & Private Label</span> OEM/ODM
                         </span>
                     </div>
@@ -125,7 +164,7 @@
                     <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A8C93] mb-1">
                         Industry Leadership
                     </div>
-                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517]">
+                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517] tabular-nums">
                         20+ <span class="text-xl font-sans font-light text-[#FA8231]">Years</span>
                     </div>
                     <p class="mt-2 text-xs text-[#5C5E64]">
@@ -137,7 +176,7 @@
                     <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A8C93] mb-1">
                         Monthly Capacity
                     </div>
-                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517]">
+                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517] tabular-nums">
                         200K+ <span class="text-xl font-sans font-light text-[#FA8231]">Units</span>
                     </div>
                     <p class="mt-2 text-xs text-[#5C5E64]">
@@ -149,7 +188,7 @@
                     <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A8C93] mb-1">
                         Skilled Workforce
                     </div>
-                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517]">
+                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517] tabular-nums">
                         1,100+ <span class="text-xl font-sans font-light text-[#FA8231]">Artisans</span>
                     </div>
                     <p class="mt-2 text-xs text-[#5C5E64]">
@@ -161,7 +200,7 @@
                     <div class="text-[10px] font-mono uppercase tracking-widest text-[#8A8C93] mb-1">
                         Audited Standards
                     </div>
-                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517]">
+                    <div class="font-serif text-4xl sm:text-5xl font-bold text-[#141517] tabular-nums">
                         100% <span class="text-xl font-sans font-light text-[#FA8231]">Certified</span>
                     </div>
                     <p class="mt-2 text-xs text-[#5C5E64]">
@@ -182,7 +221,7 @@
                     <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#FA8231] block mb-1">
                         Archival Demonstration Series
                     </span>
-                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141517] tracking-tight">
+                    <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#141517] tracking-tight text-balance">
                         Selected Technical Specifications
                     </h2>
                     <p class="mt-2 text-sm text-[#5C5E64] max-w-xl font-light">
@@ -293,6 +332,9 @@
                         <div class="aspect-[4/3] overflow-hidden bg-[#282A30]">
                             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
                                  alt="Factory floor quality assurance at Victor Bags Factory Ltd." 
+                                 width="1200"
+                                 height="900"
+                                 loading="lazy"
                                  class="w-full h-full object-cover">
                         </div>
                         <div class="mt-3 px-1 py-1 flex items-center justify-between text-[11px] font-mono text-stone-400 border-t border-[#282A30]">
@@ -311,7 +353,7 @@
                         </span>
                     </div>
 
-                    <h2 class="font-serif text-3xl sm:text-5xl font-medium text-white leading-tight">
+                    <h2 class="font-serif text-3xl sm:text-5xl font-medium text-white leading-tight text-balance">
                         Built by hand. Audited by machines.
                     </h2>
 
@@ -370,7 +412,7 @@
                         <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#FA8231] block mb-1">
                             Direct Sourcing & Wholesale Protocol
                         </span>
-                        <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#141517]">
+                        <h2 class="font-serif text-3xl sm:text-4xl font-medium text-[#141517] text-balance">
                             From Technical Sketch to U.S. Stock Delivery
                         </h2>
                     </div>
@@ -472,9 +514,15 @@
         const slides = slider.querySelectorAll('.hero-bg-slide');
         if (!slides.length) return;
 
+        const pauseBtn = document.getElementById('slider-pause-btn');
+        const pauseIcon = document.getElementById('slider-pause-icon');
+        const pauseText = document.getElementById('slider-pause-text');
+
         let currentIndex = 0;
         let slideTimer = null;
+        let isUserPaused = false;
         const autoPlayInterval = 5000;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         function updateSlider(index) {
             currentIndex = (index + slides.length) % slides.length;
@@ -484,14 +532,16 @@
                 if (i === currentIndex) {
                     slide.classList.remove('opacity-0', 'pointer-events-none', 'z-0');
                     slide.classList.add('opacity-100', 'z-10');
-                    if (img) {
+                    slide.setAttribute('aria-hidden', 'false');
+                    if (img && !prefersReducedMotion) {
                         img.classList.remove('scale-100');
                         img.classList.add('scale-105');
                     }
                 } else {
                     slide.classList.remove('opacity-100', 'z-10');
                     slide.classList.add('opacity-0', 'pointer-events-none', 'z-0');
-                    if (img) {
+                    slide.setAttribute('aria-hidden', 'true');
+                    if (img && !prefersReducedMotion) {
                         img.classList.remove('scale-105');
                         img.classList.add('scale-100');
                     }
@@ -508,6 +558,7 @@
         }
 
         function startAutoPlay() {
+            if (isUserPaused || prefersReducedMotion) return;
             stopAutoPlay();
             slideTimer = setInterval(nextSlide, autoPlayInterval);
         }
@@ -519,9 +570,37 @@
             }
         }
 
-        // Hover pause / resume
-        slider.addEventListener('mouseenter', stopAutoPlay);
-        slider.addEventListener('mouseleave', startAutoPlay);
+        function togglePlayPause() {
+            if (isUserPaused) {
+                isUserPaused = false;
+                startAutoPlay();
+                if (pauseBtn) {
+                    pauseBtn.setAttribute('aria-label', 'Pause slideshow');
+                    if (pauseIcon) pauseIcon.innerHTML = '&#10074;&#10074;';
+                    if (pauseText) pauseText.textContent = 'Pause';
+                }
+            } else {
+                isUserPaused = true;
+                stopAutoPlay();
+                if (pauseBtn) {
+                    pauseBtn.setAttribute('aria-label', 'Play slideshow');
+                    if (pauseIcon) pauseIcon.innerHTML = '&#9658;';
+                    if (pauseText) pauseText.textContent = 'Play';
+                }
+            }
+        }
+
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', togglePlayPause);
+        }
+
+        // Hover pause / resume (only if not manually paused)
+        slider.addEventListener('mouseenter', () => {
+            if (!isUserPaused) stopAutoPlay();
+        });
+        slider.addEventListener('mouseleave', () => {
+            if (!isUserPaused && !prefersReducedMotion) startAutoPlay();
+        });
 
         // Touch swipe support for mobile devices
         let touchStartX = 0;
@@ -540,13 +619,22 @@
                 } else {
                     prevSlide();
                 }
-                startAutoPlay();
+                if (!isUserPaused && !prefersReducedMotion) {
+                    startAutoPlay();
+                }
             }
         }, { passive: true });
 
         // Initialize slider
         updateSlider(0);
-        startAutoPlay();
+        if (!prefersReducedMotion) {
+            startAutoPlay();
+        } else if (pauseBtn) {
+            isUserPaused = true;
+            pauseBtn.setAttribute('aria-label', 'Play slideshow');
+            if (pauseIcon) pauseIcon.innerHTML = '&#9658;';
+            if (pauseText) pauseText.textContent = 'Play';
+        }
     });
 </script>
 @endpush

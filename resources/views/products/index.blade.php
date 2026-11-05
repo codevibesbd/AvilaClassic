@@ -87,9 +87,9 @@
                 <div class="w-full lg:w-auto flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none text-xs">
                     @foreach($categories as $slug => $cat)
                         <a href="{{ route('products.index', array_merge(request()->except('category', 'page'), ['category' => $slug])) }}" 
-                           class="px-3.5 py-2 font-medium whitespace-nowrap transition-all border flex items-center gap-2 {{ $currentCategory === $slug ? 'bg-[#141517] text-[#FAF8F5] border-[#141517] font-semibold' : 'bg-[#FAF8F5] text-[#5C5E64] hover:text-[#141517] border-[#E5E1D8] hover:bg-white' }}">
+                           class="min-h-[40px] px-3.5 py-2 font-medium whitespace-nowrap transition-colors duration-200 border flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] {{ $currentCategory === $slug ? 'bg-[#141517] text-[#FAF8F5] border-[#141517] font-semibold' : 'bg-[#FAF8F5] text-[#5C5E64] hover:text-[#141517] border-[#E5E1D8] hover:bg-white' }}">
                             <span>{{ $cat['name'] }}</span>
-                            <span class="text-[10px] font-mono px-1 py-0.2 {{ $currentCategory === $slug ? 'bg-white/20 text-white' : 'text-[#8A8C93]' }}">
+                            <span class="text-[10px] font-mono px-1 py-0.2 tabular-nums {{ $currentCategory === $slug ? 'bg-white/20 text-white' : 'text-[#8A8C93]' }}">
                                 {{ $cat['count'] }}
                             </span>
                         </a>
@@ -105,21 +105,26 @@
 
                     <!-- Search Input -->
                     <div class="relative flex-grow sm:flex-grow-0 sm:w-64">
+                        <label for="catalog-search" class="sr-only">Filter catalog by textile or SKU</label>
                         <input type="text" 
+                               id="catalog-search"
                                name="search" 
                                value="{{ $searchTerm }}" 
-                               placeholder="Filter by textile, SKU..." 
-                               class="w-full pl-9 pr-4 py-2 text-xs bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] placeholder-[#8A8C93] focus:outline-none focus:border-[#FA8231] transition-all">
-                        <svg class="w-4 h-4 text-[#8A8C93] absolute left-3 top-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               aria-label="Filter catalog by textile or SKU"
+                               placeholder="Filter by textile, SKU…" 
+                               class="w-full pl-9 pr-9 py-2.5 text-base sm:text-xs bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] placeholder-[#8A8C93] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] transition-colors">
+                        <svg class="w-4 h-4 text-[#8A8C93] absolute left-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                         @if(!empty($searchTerm))
                             <a href="{{ route('products.index', ['category' => $currentCategory]) }}" 
-                               class="absolute right-2.5 top-2 text-[#8A8C93] hover:text-[#141517] text-xs">&times;</a>
+                               aria-label="Clear search filter"
+                               class="min-w-[36px] min-h-[36px] inline-flex items-center justify-center absolute right-1 top-1/2 -translate-y-1/2 text-[#8A8C93] hover:text-[#141517] text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] rounded-xs">&times;</a>
                         @endif
                     </div>
 
-                    <button type="submit" class="px-4 py-2 bg-[#FAF8F5] border border-[#E5E1D8] text-xs font-semibold uppercase tracking-wider text-[#141517] hover:bg-[#F2EFE9] transition-colors">
+                    <button type="submit" 
+                            class="min-h-[44px] px-5 py-2.5 bg-[#FAF8F5] border border-[#E5E1D8] text-xs font-semibold uppercase tracking-wider text-[#141517] hover:bg-[#F2EFE9] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231]">
                         Filter
                     </button>
 
@@ -137,7 +142,7 @@
             <!-- Result Meta Information -->
             <div class="mb-8 flex items-center justify-between text-xs text-[#5C5E64] font-mono border-b border-[#E5E1D8] pb-4">
                 <div>
-                    Displaying <strong>{{ $products->count() }}</strong> of <strong>{{ $products->total() }}</strong> technical specification records
+                    Displaying <strong class="tabular-nums text-[#141517]">{{ $products->count() }}</strong> of <strong class="tabular-nums text-[#141517]">{{ $products->total() }}</strong> technical specification records
                     @if(!empty($searchTerm))
                         <span class="text-[#FA8231]">matching "{{ $searchTerm }}"</span>
                     @endif

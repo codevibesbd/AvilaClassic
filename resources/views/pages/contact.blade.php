@@ -180,30 +180,30 @@
                         </div>
 
                         <!-- Direct Form -->
-                        <form action="mailto:info@avilaclassic.com" method="GET" class="space-y-4 text-xs">
+                        <form id="sourcing-inquiry-form" action="mailto:info@avilaclassic.com" method="GET" class="space-y-4 text-xs">
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="space-y-1">
-                                    <label class="block font-mono text-[11px] text-[#141517] uppercase">Your Name *</label>
-                                    <input type="text" name="name" required placeholder="Full Name" 
-                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]">
+                                <div class="space-y-1.5">
+                                    <label for="contact-name" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Your Name *</label>
+                                    <input type="text" id="contact-name" name="name" required autocomplete="name" placeholder="e.g. Eleanor Vance…" 
+                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors">
                                 </div>
-                                <div class="space-y-1">
-                                    <label class="block font-mono text-[11px] text-[#141517] uppercase">Company / Brand *</label>
-                                    <input type="text" name="company" required placeholder="Company Name" 
-                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]">
+                                <div class="space-y-1.5">
+                                    <label for="contact-company" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Company / Brand *</label>
+                                    <input type="text" id="contact-company" name="company" required autocomplete="organization" placeholder="e.g. Apex Travel Outfitters…" 
+                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors">
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="space-y-1">
-                                    <label class="block font-mono text-[11px] text-[#141517] uppercase">Corporate Email *</label>
-                                    <input type="email" name="email" required placeholder="name@yourcompany.com" 
-                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]">
+                                <div class="space-y-1.5">
+                                    <label for="contact-email" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Corporate Email *</label>
+                                    <input type="email" id="contact-email" name="email" required autocomplete="email" inputmode="email" spellcheck="false" placeholder="e.g. e.vance@apexoutfitters.com…" 
+                                           class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors">
                                 </div>
-                                <div class="space-y-1">
-                                    <label class="block font-mono text-[11px] text-[#141517] uppercase">Target Category</label>
-                                    <select name="category" class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]">
+                                <div class="space-y-1.5">
+                                    <label for="contact-category" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Target Category</label>
+                                    <select id="contact-category" name="category" class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors">
                                         <option value="Professional Travel Gear">Professional Travel Gear (Luggage & Spinners)</option>
                                         <option value="Smart Luggage">Smart Luggage (USB / Tracking Compatible)</option>
                                         <option value="Backpacks">Backpacks & Laptop Bags</option>
@@ -214,9 +214,9 @@
                                 </div>
                             </div>
 
-                            <div class="space-y-1">
-                                <label class="block font-mono text-[11px] text-[#141517] uppercase">Estimated Batch Volume / Fulfillment Need</label>
-                                <select name="volume" class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]">
+                            <div class="space-y-1.5">
+                                <label for="contact-volume" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Estimated Batch Volume / Fulfillment Need</label>
+                                <select id="contact-volume" name="volume" class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors">
                                     <option value="US-Stock-Wholesale">U.S. Stock Wholesale Delivery (Lower MOQs)</option>
                                     <option value="1000-5000">Direct Factory Run: 1,000 – 5,000 units</option>
                                     <option value="5000-20000">Volume Batch: 5,000 – 20,000 units</option>
@@ -224,15 +224,23 @@
                                 </select>
                             </div>
 
-                            <div class="space-y-1">
-                                <label class="block font-mono text-[11px] text-[#141517] uppercase">Project Specifications & Notes *</label>
-                                <textarea name="body" rows="4" required placeholder="Describe your target textiles (e.g. 1680D nylon, polycarbonate, rPET), custom branding specifications, or U.S. stock wholesale requirements..." 
-                                          class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] focus:outline-none focus:border-[#FA8231]"></textarea>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center justify-between">
+                                    <label for="contact-body" class="block font-mono text-[11px] text-[#141517] uppercase tracking-wider">Project Specifications & Notes *</label>
+                                    <span class="text-[10px] font-mono text-[#8A8C93]">Press ⌘+Enter to submit</span>
+                                </div>
+                                <textarea id="contact-body" name="body" rows="4" required placeholder="Describe your target textiles (e.g. 1680D nylon, polycarbonate, rPET), custom branding specifications, or U.S. stock wholesale requirements…" 
+                                          class="w-full p-3 bg-[#FAF8F5] border border-[#E5E1D8] text-[#141517] text-base sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-1 transition-colors"></textarea>
                             </div>
 
                             <button type="submit" 
-                                    class="w-full py-4 bg-[#141517] text-[#FAF8F5] text-xs uppercase tracking-wider font-semibold hover:bg-[#FA8231] transition-colors">
-                                Transmit Sourcing Inquiry &rarr;
+                                    id="contact-submit-btn"
+                                    class="w-full min-h-[48px] py-4 bg-[#141517] text-[#FAF8F5] text-xs uppercase tracking-wider font-semibold hover:bg-[#FA8231] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-2 flex items-center justify-center gap-2">
+                                <svg id="contact-submit-spinner" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                <span id="contact-submit-label">Transmit Sourcing Inquiry &rarr;</span>
                             </button>
 
                             <p class="text-[11px] text-[#8A8C93] text-center font-mono">
@@ -282,3 +290,32 @@
     </section>
 
 @endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('sourcing-inquiry-form');
+        const textarea = document.getElementById('contact-body');
+        const submitBtn = document.getElementById('contact-submit-btn');
+        const spinner = document.getElementById('contact-submit-spinner');
+
+        if (textarea && form) {
+            textarea.addEventListener('keydown', (e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    if (form.reportValidity()) {
+                        form.requestSubmit();
+                    }
+                }
+            });
+        }
+
+        if (form && submitBtn) {
+            form.addEventListener('submit', () => {
+                submitBtn.disabled = true;
+                if (spinner) spinner.classList.remove('hidden');
+            });
+        }
+    });
+</script>
+@endpush

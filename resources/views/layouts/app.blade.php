@@ -112,21 +112,27 @@
 </head>
 <body class="bg-[#FAF8F5] text-[#141517] font-sans min-h-full flex flex-col selection:bg-[#FA8231] selection:text-white antialiased">
 
+    <!-- Skip to Main Content Link for Keyboard & Screen Reader Users -->
+    <a href="#main-content" 
+       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-[#FA8231] focus:text-white focus:shadow-lg focus:font-semibold focus:text-xs uppercase tracking-wider focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#141517]">
+        Skip to content
+    </a>
+
     <!-- Top Trade Banner: Authentic Human Notice -->
     <div class="bg-[#141517] text-[#FAF8F5] text-[11px] font-medium tracking-wide py-2 px-4 border-b border-[#282A30]">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
             <div class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FA8231]" aria-hidden="true"></span>
                 <span class="text-stone-300">
-                    <strong class="text-white font-semibold">AVILA CLASSIC TRADING INC.</strong> • New York Showroom & Bangladesh Manufacturing
+                    <strong class="text-white font-semibold">AVILA&nbsp;CLASSIC TRADING&nbsp;INC.</strong> • New York Showroom & Bangladesh Manufacturing
                 </span>
             </div>
             <div class="flex items-center gap-4 text-stone-400">
                 <span class="text-stone-300 border-l border-stone-700 pl-3">Catalog & Specification Archives (B2B Only)</span>
                 <span class="hidden md:inline text-stone-600">/</span>
-                <a href="tel:+16462069437" class="hidden md:inline hover:text-white transition-colors">+1 (646) 206-9437</a>
+                <a href="tel:+16462069437" class="hidden md:inline hover:text-white transition-colors focus-visible:underline">+1&nbsp;(646)&nbsp;206-9437</a>
                 <span class="text-stone-600">/</span>
-                <a href="mailto:info@avilaclassic.com" class="hover:text-amber-200 text-stone-300 transition-colors">info@avilaclassic.com</a>
+                <a href="mailto:info@avilaclassic.com" class="hover:text-amber-200 text-stone-300 transition-colors focus-visible:underline">info@avilaclassic.com</a>
             </div>
         </div>
     </div>
@@ -137,13 +143,13 @@
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Authentic Brand Monogram & Title -->
-                <a href="{{ route('home') }}" class="group flex items-center gap-3.5 focus:outline-none flex-shrink-0">
-                    <div class="w-9 h-9 border border-[#141517] bg-[#141517] text-[#FAF8F5] flex items-center justify-center font-serif text-lg font-bold tracking-tighter group-hover:bg-[#FA8231] group-hover:border-[#FA8231] transition-colors flex-shrink-0">
+                <a href="{{ route('home') }}" class="group flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-2 rounded-xs flex-shrink-0">
+                    <div class="w-9 h-9 border border-[#141517] bg-[#141517] text-[#FAF8F5] flex items-center justify-center font-serif text-lg font-bold tracking-tighter group-hover:bg-[#FA8231] group-hover:border-[#FA8231] transition-colors flex-shrink-0" aria-hidden="true">
                         AC
                     </div>
                     <div class="flex flex-col">
                         <span class="font-serif text-2xl font-bold tracking-tight text-[#141517] group-hover:text-[#FA8231] transition-colors leading-none whitespace-nowrap">
-                            AVILA CLASSIC
+                            AVILA&nbsp;CLASSIC
                         </span>
                         <span class="text-[9px] uppercase tracking-[0.25em] font-semibold text-[#8A8C93] mt-1 whitespace-nowrap">
                             U.S. Wholesale Sourcing Desk
@@ -152,35 +158,34 @@
                 </a>
 
                 <!-- Desktop Editorial Navigation -->
-                <nav class="hidden lg:flex items-center gap-5 xl:gap-8 text-xs xl:text-[13px] font-medium tracking-wide flex-shrink-0">
+                <nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-5 xl:gap-8 text-xs xl:text-[13px] font-medium tracking-wide flex-shrink-0">
                     <a href="{{ route('home') }}" 
-                       class="py-1 border-b-2 transition-all whitespace-nowrap {{ request()->routeIs('home') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('home') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
                         Overview
                     </a>
                     
                     <a href="{{ route('products.index') }}" 
-                       class="py-1 border-b-2 transition-all flex items-center gap-1.5 whitespace-nowrap {{ request()->routeIs('products.*') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
-                        <span>Catalog</span>
-                        <span class="text-[10px] font-mono px-1.5 py-0.2 bg-[#F2EFE9] text-[#5C5E64] border border-[#E5E1D8]">12</span>
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('products.*') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                        Catalog
                     </a>
 
                     <a href="{{ route('manufacturing') }}" 
-                       class="py-1 border-b-2 transition-all whitespace-nowrap {{ request()->routeIs('manufacturing') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('manufacturing') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
                         Manufacturing
                     </a>
 
                     <a href="{{ route('sustainability') }}" 
-                       class="py-1 border-b-2 transition-all whitespace-nowrap {{ request()->routeIs('sustainability') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('sustainability') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
                         Sustainability
                     </a>
 
                     <a href="{{ route('about') }}" 
-                       class="py-1 border-b-2 transition-all whitespace-nowrap {{ request()->routeIs('about') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('about') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
                         About
                     </a>
 
                     <a href="{{ route('contact') }}" 
-                       class="py-1 border-b-2 transition-all whitespace-nowrap {{ request()->routeIs('contact') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
+                       class="py-1 border-b-2 transition-colors duration-200 whitespace-nowrap {{ request()->routeIs('contact') ? 'border-[#FA8231] text-[#141517] font-semibold' : 'border-transparent text-[#5C5E64] hover:text-[#141517]' }}">
                         Contact
                     </a>
                 </nav>
@@ -188,22 +193,26 @@
                 <!-- Right Action: Direct Inquiry Button -->
                 <div class="hidden lg:flex items-center flex-shrink-0">
                     <a href="{{ route('contact') }}" 
-                       class="px-5 py-2.5 bg-[#141517] text-[#FAF8F5] text-xs uppercase tracking-wider font-semibold hover:bg-[#FA8231] transition-colors border border-[#141517] whitespace-nowrap">
+                       class="px-5 py-2.5 bg-[#141517] text-[#FAF8F5] text-xs uppercase tracking-wider font-semibold hover:bg-[#FA8231] transition-colors border border-[#141517] whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-2">
                         Direct Inquiries
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="flex lg:hidden items-center gap-3">
-                    <a href="{{ route('products.index') }}" class="px-3 py-1.5 border border-[#E5E1D8] bg-white text-xs font-semibold text-[#141517]">
+                    <a href="{{ route('products.index') }}" 
+                       class="min-h-[44px] px-3.5 py-2 border border-[#E5E1D8] bg-white text-xs font-semibold text-[#141517] inline-flex items-center justify-center hover:bg-[#F2EFE9] transition-colors focus-visible:ring-2 focus-visible:ring-[#FA8231]">
                         Catalog
                     </a>
-                    <button type="button" id="mobile-menu-btn" aria-label="Toggle navigation"
-                            class="p-2 border border-[#E5E1D8] text-[#141517] bg-white hover:bg-[#F2EFE9] transition-colors">
-                        <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button type="button" id="mobile-menu-btn" 
+                            aria-label="Toggle navigation" 
+                            aria-expanded="false" 
+                            aria-controls="mobile-menu"
+                            class="min-w-[44px] min-h-[44px] p-2.5 border border-[#E5E1D8] text-[#141517] bg-white hover:bg-[#F2EFE9] transition-colors flex items-center justify-center focus-visible:ring-2 focus-visible:ring-[#FA8231]">
+                        <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
-                        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
@@ -213,22 +222,22 @@
         </div>
 
         <!-- Mobile Drawer -->
-        <div id="mobile-menu" class="hidden lg:hidden border-b border-[#E5E1D8] bg-[#FAF8F5] px-6 py-6 space-y-4">
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-[#E5E1D8] bg-[#FAF8F5] px-6 py-6 space-y-4 overscroll-contain">
             <div class="space-y-2 text-sm font-medium">
-                <a href="{{ route('home') }}" class="block py-2 border-b border-[#E5E1D8] text-[#141517] font-semibold">Overview</a>
-                <a href="{{ route('products.index') }}" class="block py-2 border-b border-[#E5E1D8] text-[#141517]">Specification Catalog (12 Items)</a>
-                <a href="{{ route('manufacturing') }}" class="block py-2 border-b border-[#E5E1D8] text-[#141517]">The Factory & Quality Labs</a>
-                <a href="{{ route('sustainability') }}" class="block py-2 border-b border-[#E5E1D8] text-[#141517]">Sustainable Materials & ESG</a>
-                <a href="{{ route('about') }}" class="block py-2 border-b border-[#E5E1D8] text-[#141517]">About Our Enterprise</a>
-                <a href="{{ route('contact') }}" class="block py-2 text-[#141517]">Contact Global Desks</a>
+                <a href="{{ route('home') }}" class="block py-2.5 border-b border-[#E5E1D8] text-[#141517] font-semibold">Overview</a>
+                <a href="{{ route('products.index') }}" class="block py-2.5 border-b border-[#E5E1D8] text-[#141517]">Specification Catalog (12 Items)</a>
+                <a href="{{ route('manufacturing') }}" class="block py-2.5 border-b border-[#E5E1D8] text-[#141517]">The Factory & Quality Labs</a>
+                <a href="{{ route('sustainability') }}" class="block py-2.5 border-b border-[#E5E1D8] text-[#141517]">Sustainable Materials & ESG</a>
+                <a href="{{ route('about') }}" class="block py-2.5 border-b border-[#E5E1D8] text-[#141517]">About Our Enterprise</a>
+                <a href="{{ route('contact') }}" class="block py-2.5 text-[#141517]">Contact Global Desks</a>
             </div>
 
             <div class="pt-4 border-t border-[#E5E1D8] text-xs text-[#5C5E64] space-y-2">
                 <div><strong>New York Office:</strong> 37-15 73rd Street, Store L4, Jackson Heights, NY 11372</div>
                 <div><strong>Factory Affiliate:</strong> Victor Bags Factory Ltd. (Brahmanbaria & Dhaka)</div>
-                <div><strong>Direct Tel:</strong> <a href="tel:+16462069437" class="underline text-[#141517]">+1 (646) 206-9437</a></div>
+                <div><strong>Direct Tel:</strong> <a href="tel:+16462069437" class="underline text-[#141517]">+1&nbsp;(646)&nbsp;206-9437</a></div>
                 <div class="pt-2">
-                    <a href="{{ route('contact') }}" class="block w-full text-center py-3 bg-[#141517] text-white text-xs uppercase tracking-wider font-semibold">
+                    <a href="{{ route('contact') }}" class="block w-full text-center min-h-[44px] py-3 bg-[#141517] text-white text-xs uppercase tracking-wider font-semibold inline-flex items-center justify-center">
                         Sourcing Desk Inquiry
                     </a>
                 </div>
@@ -237,7 +246,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main id="main-content" tabindex="-1" class="flex-grow focus:outline-none">
         @yield('content')
     </main>
 
@@ -343,7 +352,7 @@
         </div>
     </footer>
 
-    <!-- Mobile Drawer Interaction Script -->
+    <!-- Mobile Drawer Interaction Script with APG Keyboard Support -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('mobile-menu-btn');
@@ -351,17 +360,31 @@
             const iconOpen = document.getElementById('menu-icon-open');
             const iconClose = document.getElementById('menu-icon-close');
 
+            function toggleMenu(expand) {
+                const shouldExpand = expand !== undefined ? expand : menu.classList.contains('hidden');
+                if (shouldExpand) {
+                    menu.classList.remove('hidden');
+                    iconOpen.classList.add('hidden');
+                    iconClose.classList.remove('hidden');
+                    btn.setAttribute('aria-expanded', 'true');
+                } else {
+                    menu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            }
+
             if (btn && menu) {
                 btn.addEventListener('click', () => {
                     const isHidden = menu.classList.contains('hidden');
-                    if (isHidden) {
-                        menu.classList.remove('hidden');
-                        iconOpen.classList.add('hidden');
-                        iconClose.classList.remove('hidden');
-                    } else {
-                        menu.classList.add('hidden');
-                        iconOpen.classList.remove('hidden');
-                        iconClose.classList.add('hidden');
+                    toggleMenu(isHidden);
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && !menu.classList.contains('hidden')) {
+                        toggleMenu(false);
+                        btn.focus();
                     }
                 });
             }

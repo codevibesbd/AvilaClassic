@@ -1,148 +1,156 @@
-<laravel-boost-guidelines>
-=== foundation rules ===
+Concise rules for building accessible, fast, delightful UIs. Use MUST/SHOULD/NEVER to guide decisions.
 
-# Laravel Boost Guidelines
+## Interactions
 
-## Foundational Context
+### Keyboard
 
-This application is a Laravel application running on PHP 8.3. Always use the APIs that match the installed major version of each package — do not assume a version.
+- MUST: Full keyboard support per [WAI-ARIA APG](https://www.w3.org/WAI/ARIA/apg/patterns/)
+- MUST: Visible, unobscured focus rings (`:focus-visible`; group with `:focus-within`); sticky/fixed elements never cover focus
+- MUST: Manage focus (trap, move, return) per APG patterns
+- NEVER: `outline: none` without visible focus replacement
 
-Before relying on a package's API, confirm its installed version:
-- PHP packages: run `composer show --direct` to list direct dependencies with versions, or `composer show <vendor/package>` for a single package.
-- JS packages: check `package.json` for the installed versions.
+### Targets & Input
 
-## Skills Activation
+- MUST: Hit target ≥24px (mobile ≥44px); if visual <24px, expand hit area
+- MUST: Mobile `<input>` font-size ≥16px to prevent iOS zoom
+- NEVER: Disable browser zoom (`user-scalable=no`, `maximum-scale=1`)
+- MUST: `touch-action: manipulation` to prevent double-tap zoom
+- SHOULD: Set `-webkit-tap-highlight-color` to match design
 
-This project has domain-specific skills available in `**/skills/**`. You MUST activate the relevant skill whenever you work in that domain—don't wait until you're stuck.
+### Forms
 
-## Conventions
+- MUST: Hydration-safe inputs (no lost focus/value)
+- NEVER: Block paste in `<input>`/`<textarea>`
+- MUST: Loading buttons show spinner and keep original label
+- MUST: Enter submits focused input; in `<textarea>`, ⌘/Ctrl+Enter submits
+- MUST: Keep submit enabled until request starts; then disable with spinner
+- MUST: Accept free text, validate after—don't block typing
+- MUST: Allow incomplete form submission to surface validation
+- MUST: Errors inline next to fields; on submit, focus first error
+- MUST: `autocomplete` + meaningful `name`; correct `type` and `inputmode`
+- SHOULD: Disable spellcheck for emails/codes/usernames
+- SHOULD: Placeholders end with `…` and show example pattern
+- MUST: Warn on unsaved changes before navigation
+- MUST: Compatible with password managers & 2FA; allow pasting codes
+- MUST: Trim values to handle text expansion trailing spaces
+- MUST: No dead zones on checkboxes/radios; label+control share one hit target
 
-- You must follow all existing code conventions used in this application. When creating or editing a file, check sibling files for the correct structure, approach, and naming.
-- Use descriptive names for variables and methods. For example, `isRegisteredForDiscounts`, not `discount()`.
-- Check for existing components to reuse before writing a new one.
+### State & Navigation
 
-## Verification Scripts
+- MUST: URL reflects state (deep-link filters/tabs/pagination/expanded panels)
+- MUST: Back/Forward restores scroll position
+- MUST: Links use `<a>`/`<Link>` for navigation (support Cmd/Ctrl/middle-click)
+- NEVER: Use `<div onClick>` for navigation
 
-- Do not create verification scripts or tinker when tests cover that functionality and prove they work. Unit and feature tests are more important.
+### Feedback
 
-## Application Structure & Architecture
+- SHOULD: Optimistic UI; reconcile on response; on failure rollback or offer Undo
+- MUST: Confirm destructive actions or provide Undo window
+- MUST: Use polite `aria-live` for toasts/inline validation
+- SHOULD: Ellipsis (`…`) for options opening follow-ups ("Rename…") and loading states ("Loading…")
 
-- Stick to existing directory structure; don't create new base folders without approval.
-- Do not change the application's dependencies without approval.
+### Touch & Drag
 
-## Frontend Bundling
+- MUST: Generous targets, clear affordances; avoid finicky interactions
+- MUST: Delay first tooltip; subsequent peers instant
+- MUST: `overscroll-behavior: contain` in modals/drawers
+- SHOULD: When suppressing page rubber-band bounce, set `overscroll-behavior: none` on `<html>` inside `@media (pointer: fine)`; keep coarse-pointer page defaults for pull-to-refresh. Test hybrid touch devices: `pointer` describes the primary input, and `none` also disables scroll chaining and native swipe navigation
+- MUST: During drag, disable text selection and set `inert` on dragged elements
+- MUST: Drag/swipe/pinch/path gestures have a tap/click and keyboard alternative unless essential
+- MUST: If it looks clickable, it must be clickable
 
-- If a frontend change doesn't show in the UI or you get a "Unable to locate file in Vite manifest" error, run `npm run build` or ask the user to run `npm run dev` or `composer run dev`.
+### Autofocus
 
-## Documentation Files
+- SHOULD: Autofocus on desktop with single primary input; rarely on mobile
 
-- You must only create documentation files if explicitly requested by the user.
+## Animation
 
-=== boost rules ===
+- MUST: Honor `prefers-reduced-motion` (provide reduced variant or disable)
+- SHOULD: Prefer CSS > Web Animations API > JS libraries
+- MUST: Animate compositor-friendly props (`transform`, `opacity`) only
+- NEVER: Animate layout props (`top`, `left`, `width`, `height`)
+- NEVER: `transition: all`—list properties explicitly
+- SHOULD: Animate only to clarify cause/effect or add deliberate delight
+- SHOULD: Choose easing to match the change (size/distance/trigger)
+- MUST: Animations interruptible and input-driven; autoplay only for muted, non-essential loops
+- MUST: Autoplay motion >5s alongside other content has pause, stop, or hide controls
+- MUST: Correct `transform-origin` (motion starts where it "physically" should)
+- MUST: SVG transforms on `<g>` wrapper with `transform-box: fill-box`
 
-# Laravel Boost
+## Layout
 
-## Tools
+- SHOULD: Optical alignment; adjust ±1px when perception beats geometry
+- MUST: Deliberate alignment to grid/baseline/edges—no accidental placement
+- SHOULD: Balance icon/text lockups (weight/size/spacing/color)
+- MUST: Verify mobile, laptop, ultra-wide (simulate ultra-wide at 50% zoom)
+- MUST: Respect safe areas (`env(safe-area-inset-*)`)
+- MUST: Avoid unwanted scrollbars; fix overflows
+- SHOULD: Flex/grid over JS measurement for layout
 
-- Laravel Boost is an MCP server with tools designed specifically for this application. Prefer Boost tools over manual alternatives like shell commands or file reads.
-- Use `database-query` to run read-only queries against the database instead of writing raw SQL in tinker.
-- Use `database-schema` to inspect table structure before writing migrations or models.
-- Use `get-absolute-url` to resolve the correct scheme, domain, and port for project URLs. Always use this before sharing a URL with the user.
-- Use `browser-logs` to read browser logs, errors, and exceptions. Only recent logs are useful, ignore old entries.
+## Content & Accessibility
 
-## Searching Documentation (IMPORTANT)
+- SHOULD: Inline help first; tooltips last resort
+- MUST: Skeletons mirror final content to avoid layout shift
+- MUST: `<title>` matches current context
+- MUST: No dead ends; always offer next step/recovery
+- MUST: Design empty/sparse/dense/error states
+- SHOULD: Curly quotes (“ ”); avoid widows/orphans (`text-wrap: balance`)
+- MUST: `font-variant-numeric: tabular-nums` for number comparisons
+- MUST: Redundant status cues (not color-only); icons have text labels
+- MUST: Accessible names exist even when visuals omit labels
+- MUST: Use `…` character (not `...`)
+- MUST: `scroll-margin-top` on headings; "Skip to content" link; hierarchical `<h1>`–`<h6>`
+- MUST: Resilient to user-generated content (short/avg/very long)
+- MUST: Locale-aware dates/times/numbers (`Intl.DateTimeFormat`, `Intl.NumberFormat`)
+- SHOULD: `translate="no"` on brand names, code tokens, & identifiers to prevent garbled auto-translation
+- MUST: Accurate `aria-label`; decorative elements `aria-hidden`
+- MUST: Icon-only buttons have descriptive `aria-label`
+- MUST: Prefer native semantics (`button`, `a`, `label`, `table`) before ARIA
+- MUST: Media has captions/transcripts/descriptions as applicable; controls are keyboard-operable; decorative media hidden from assistive tech
+- MUST: Non-breaking spaces: `10&nbsp;MB`, `⌘&nbsp;K`, brand names
 
-- Use `search-docs` before changes that depend on Laravel ecosystem APIs, behavior, configuration, or version-specific syntax. Skip it for copy-only edits and other changes where package documentation is irrelevant. Reuse sufficient results already in context instead of searching again.
-- Pass a `packages` array to scope results when you know which packages are relevant.
-- Use multiple broad, topic-based queries: `['rate limiting', 'routing rate limiting', 'routing']`. Expect the most relevant results first.
-- Do not add package names to queries because package info is already shared. Use `test resource table`, not `filament 4 test resource table`.
+## Content Handling
 
-### Search Syntax
+- MUST: Text containers handle long content (`truncate`, `line-clamp-*`, `break-words`)
+- MUST: Flex children need `min-w-0` to allow truncation
+- MUST: Handle empty states—no broken UI for empty strings/arrays
 
-1. Use words for auto-stemmed AND logic: `rate limit` matches both "rate" AND "limit".
-2. Use `"quoted phrases"` for exact position matching: `"infinite scroll"` requires adjacent words in order.
-3. Combine words and phrases for mixed queries: `middleware "rate limit"`.
-4. Use multiple queries for OR logic: `queries=["authentication", "middleware"]`.
+## Performance
 
-## Project Rules
+- SHOULD: Test iOS Low Power Mode and macOS Safari
+- MUST: Measure reliably (disable extensions that skew runtime)
+- MUST: Track and minimize re-renders (React DevTools/React Scan)
+- MUST: Profile with CPU/network throttling
+- MUST: Batch layout reads/writes; avoid reflows/repaints
+- MUST: Mutations (`POST`/`PATCH`/`DELETE`) target <500ms
+- SHOULD: Prefer uncontrolled inputs; controlled inputs cheap per keystroke
+- MUST: Virtualize large lists (>50 items)
+- MUST: Preload above-fold images; lazy-load the rest
+- MUST: Prevent CLS (explicit image dimensions)
+- SHOULD: `<link rel="preconnect">` for CDN domains
+- SHOULD: Critical fonts: `<link rel="preload" as="font">` with `font-display: swap`
+- SHOULD: `<video autoplay muted loop playsinline>` over animated GIF; provide still/reduced-motion alternative
+- SHOULD: Short non-essential loops include a Safari H.264 MP4 `<picture>` source, `prefers-reduced-motion` media condition, and still fallback
 
-- This project contains committed, area-grouped rules in `.ai/rules` when that directory exists, including path-scoped framework guidelines under `.ai/rules/boost`. Before you enter plan mode or create/edit any file, you MUST first: open @.ai/rules/index.md (it maps file globs to rule files), read every rule file whose globs cover the path(s) in scope, and run `grep -rin 'keyword' .ai/rules` to catch what a path match alone misses. Do not write code until you have read and are following every matching rule. If `.ai/rules` does not exist, continue without it.
+## Dark Mode & Theming
 
-## Artisan
+- MUST: `color-scheme: dark` on `<html>` for dark themes
+- SHOULD: `<meta name="theme-color">` matches page background
+- MUST: Native `<select>`: explicit `background-color` and `color` (Windows fix)
 
-- Run Artisan commands directly via the command line (e.g., `php artisan route:list`). Use `php artisan list` to discover available commands and `php artisan [command] --help` to check parameters.
-- Inspect routes with `php artisan route:list`. Filter with: `--method=GET`, `--name=users`, `--path=api`, `--except-vendor`, `--only-vendor`.
-- Read configuration values using dot notation: `php artisan config:show app.name`, `php artisan config:show database.default`. Or read config files directly from the `config/` directory.
+## Hydration
 
-## Tinker
+- MUST: Inputs with `value` need `onChange` (or use `defaultValue`)
+- SHOULD: Guard date/time rendering against hydration mismatch
 
-- Execute PHP in app context for debugging and testing code. Do not create models without user approval, prefer tests with factories instead. Prefer existing Artisan commands over custom tinker code.
-- Always use single quotes to prevent shell expansion: `php artisan tinker --execute 'Your::code();'`
-  - Double quotes for PHP strings inside: `php artisan tinker --execute 'User::where("active", true)->count();'`
+## Design
 
-=== php rules ===
-
-# PHP
-
-- Always use curly braces for control structures, even for single-line bodies.
-- Use PHP 8 constructor property promotion: `public function __construct(public GitHub $github) { }`. Do not leave empty zero-parameter `__construct()` methods unless the constructor is private.
-- Use explicit return type declarations and type hints for all method parameters: `function isAccessible(User $user, ?string $path = null): bool`
-- Use TitleCase for Enum keys: `FavoritePerson`, `BestLake`, `Monthly`.
-- Prefer PHPDoc blocks over inline comments. Only add inline comments for exceptionally complex logic.
-- Use array shape type definitions in PHPDoc blocks.
-
-=== deployments rules ===
-
-# Deployment
-
-- Laravel can be deployed using [Laravel Cloud](https://cloud.laravel.com/), which is the fastest way to deploy and scale production Laravel applications.
-- Activate the `deploying-to-cloud` skill whenever deploying to Laravel Cloud, configuring Cloud environments or resources, using the Cloud CLI, or troubleshooting Cloud deployments.
-
-=== laravel/core rules ===
-
-# Do Things the Laravel Way
-
-- Use `php artisan make:` commands to create new files (i.e. migrations, controllers, models, etc.). You can list available Artisan commands using `php artisan list` and check their parameters with `php artisan [command] --help`.
-- If you're creating a generic PHP class, use `php artisan make:class`.
-- Pass `--no-interaction` to all Artisan commands to ensure they work without user input. You should also pass the correct `--options` to ensure correct behavior.
-
-### Model Creation
-
-- When creating new models, create useful factories and seeders for them too. Ask the user if they need any other things, using `php artisan make:model --help` to check the available options.
-
-## APIs & Eloquent Resources
-
-- For APIs, default to using Eloquent API Resources and API versioning unless existing API routes do not, then you should follow existing application convention.
-
-## URL Generation
-
-- When generating links to other pages, prefer named routes and the `route()` function.
-
-## Testing
-
-- When creating models for tests, use the factories for the models. Check if the factory has custom states that can be used before manually setting up the model.
-- Faker: Use methods such as `$this->faker->word()` or `fake()->randomDigit()`. Follow existing conventions whether to use `$this->faker` or `fake()`.
-- When creating tests, make use of `php artisan make:test [options] {name}` to create a feature test, and pass `--unit` to create a unit test. Most tests should be feature tests.
-
-=== pint/core rules ===
-
-# Laravel Pint Code Formatter
-
-- If you have modified any PHP files, you must run `vendor/bin/pint --dirty --format agent` before finalizing changes to ensure your code matches the project's expected style.
-- Do not run `vendor/bin/pint --test --format agent`, simply run `vendor/bin/pint --format agent` to fix any formatting issues.
-
-=== phpunit/core rules ===
-
-# PHPUnit
-
-- This project uses PHPUnit. Create tests with `php artisan make:test --phpunit {name}`.
-- Do not include the test suite directory in `{name}`. Use `SomeFeatureTest`, not `Feature/SomeFeatureTest`.
-- Read the `testing-best-practices` skill for guidance on coverage, naming, structure, dependency isolation, and review.
-
-## Running Tests
-
-- Run the narrowest set of tests that covers the change. Pass a file path or `--filter=testName` to `php artisan test --compact`.
-- Rerun a test after each change to it.
-- Run `vendor/bin/phpunit` to call the test runner directly. It accepts the same file path and `--filter=testName` arguments.
-
-</laravel-boost-guidelines>
+- SHOULD: Layered shadows (ambient + direct)
+- SHOULD: Crisp edges via semi-transparent borders + shadows
+- SHOULD: Nested radii: child ≤ parent; concentric
+- SHOULD: Hue consistency: tint borders/shadows/text toward bg hue
+- MUST: Accessible charts (color-blind-friendly palettes)
+- MUST: Meet contrast—prefer [APCA](https://apcacontrast.com/) over WCAG 2
+- MUST: Increase contrast on `:hover`/`:active`/`:focus`
+- SHOULD: Match browser UI to bg
+- SHOULD: Avoid dark color gradient banding (use background images when needed)

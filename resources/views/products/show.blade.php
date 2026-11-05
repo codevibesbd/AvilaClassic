@@ -125,7 +125,10 @@
                             <img id="main-product-image" 
                                  src="{{ $product->primary_image }}" 
                                  alt="{{ $product->title }} - Full Engineering Specification" 
-                                 class="w-full h-full object-cover object-center transition-all duration-300">
+                                 width="1200"
+                                 height="900"
+                                 fetchpriority="high"
+                                 class="w-full h-full object-cover object-center transition-opacity duration-200">
                         </div>
 
                         <!-- Top Badges on Gallery -->
@@ -149,12 +152,14 @@
 
                     <!-- Gallery Thumbnails (if available) -->
                     @if(!empty($product->gallery_images) && count($product->gallery_images) > 1)
-                        <div class="flex items-center gap-3 overflow-x-auto pb-2">
+                        <div class="flex items-center gap-3 overflow-x-auto pb-2" role="region" aria-label="Product image thumbnails">
                             @foreach($product->gallery_images as $index => $img)
                                 <button type="button" 
                                         onclick="switchGalleryImage('{{ $img }}', this)" 
-                                        class="gallery-thumb relative flex-shrink-0 w-20 h-20 p-1 bg-white border transition-all focus:outline-none {{ $loop->first ? 'border-[#FA8231] opacity-100' : 'border-[#E5E1D8] opacity-60 hover:opacity-100' }}">
-                                    <img src="{{ $img }}" alt="{{ $product->title }} view {{ $index + 1 }}" class="w-full h-full object-cover">
+                                        aria-label="{{ $product->title }} view {{ $index + 1 }}"
+                                        aria-current="{{ $loop->first ? 'true' : 'false' }}"
+                                        class="gallery-thumb relative flex-shrink-0 w-20 h-20 p-1 bg-white border transition-colors duration-200 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FA8231] focus-visible:ring-offset-2 {{ $loop->first ? 'border-[#FA8231] opacity-100' : 'border-[#E5E1D8] opacity-60 hover:opacity-100' }}">
+                                    <img src="{{ $img }}" alt="" width="80" height="80" class="w-full h-full object-cover">
                                 </button>
                             @endforeach
                         </div>
@@ -219,54 +224,55 @@
                         <span class="block text-[11px] font-mono uppercase tracking-wider text-[#8A8C93] mb-2.5">
                             Bill of Materials & Engineering Specifications
                         </span>
-                        <div class="bg-white border border-[#E5E1D8] divide-y divide-[#E5E1D8] text-xs">
-                            
-                            @if(!empty($product->capacity))
-                                <div class="p-3 flex justify-between items-center gap-4">
-                                    <span class="text-[#5C5E64] font-mono text-[11px]">Volumetric Capacity</span>
-                                    <span class="text-[#141517] font-mono font-semibold">{{ $product->capacity }}</span>
-                                </div>
-                            @endif
+                        <table class="w-full bg-white border border-[#E5E1D8] text-xs">
+                            <caption class="sr-only">Bill of Materials & Technical Specifications for {{ $product->title }}</caption>
+                            <tbody class="divide-y divide-[#E5E1D8]">
+                                @if(!empty($product->capacity))
+                                    <tr class="p-3 flex justify-between items-center gap-4">
+                                        <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Volumetric Capacity</th>
+                                        <td class="text-[#141517] font-mono font-semibold tabular-nums text-right">{{ $product->capacity }}</td>
+                                    </tr>
+                                @endif
 
-                            @if(!empty($product->dimensions))
-                                <div class="p-3 flex justify-between items-center gap-4">
-                                    <span class="text-[#5C5E64] font-mono text-[11px]">Dimensions</span>
-                                    <span class="text-[#141517] font-mono text-right">{{ $product->dimensions }}</span>
-                                </div>
-                            @endif
+                                @if(!empty($product->dimensions))
+                                    <tr class="p-3 flex justify-between items-center gap-4">
+                                        <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Dimensions</th>
+                                        <td class="text-[#141517] font-mono tabular-nums text-right">{{ $product->dimensions }}</td>
+                                    </tr>
+                                @endif
 
-                            @if(!empty($product->weight))
-                                <div class="p-3 flex justify-between items-center gap-4">
-                                    <span class="text-[#5C5E64] font-mono text-[11px]">Tare Weight</span>
-                                    <span class="text-[#141517] font-mono">{{ $product->weight }}</span>
-                                </div>
-                            @endif
+                                @if(!empty($product->weight))
+                                    <tr class="p-3 flex justify-between items-center gap-4">
+                                        <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Tare Weight</th>
+                                        <td class="text-[#141517] font-mono tabular-nums text-right">{{ $product->weight }}</td>
+                                    </tr>
+                                @endif
 
-                            <div class="p-3 flex justify-between items-start gap-4">
-                                <span class="text-[#5C5E64] font-mono text-[11px]">Primary Textile</span>
-                                <span class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->primary_material }}</span>
-                            </div>
+                                <tr class="p-3 flex justify-between items-start gap-4">
+                                    <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Primary Textile</th>
+                                    <td class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->primary_material }}</td>
+                                </tr>
 
-                            @if(!empty($product->lining_material))
-                                <div class="p-3 flex justify-between items-start gap-4">
-                                    <span class="text-[#5C5E64] font-mono text-[11px]">Internal Lining</span>
-                                    <span class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->lining_material }}</span>
-                                </div>
-                            @endif
+                                @if(!empty($product->lining_material))
+                                    <tr class="p-3 flex justify-between items-start gap-4">
+                                        <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Internal Lining</th>
+                                        <td class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->lining_material }}</td>
+                                    </tr>
+                                @endif
 
-                            @if(!empty($product->hardware_specs))
-                                <div class="p-3 flex justify-between items-start gap-4">
-                                    <span class="text-[#5C5E64] font-mono text-[11px]">Hardware & Fasteners</span>
-                                    <span class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->hardware_specs }}</span>
-                                </div>
-                            @endif
+                                @if(!empty($product->hardware_specs))
+                                    <tr class="p-3 flex justify-between items-start gap-4">
+                                        <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Hardware & Fasteners</th>
+                                        <td class="text-[#141517] text-right font-medium max-w-[240px]">{{ $product->hardware_specs }}</td>
+                                    </tr>
+                                @endif
 
-                            <div class="p-3 flex justify-between items-center gap-4">
-                                <span class="text-[#5C5E64] font-mono text-[11px]">Factory of Origin</span>
-                                <span class="text-[#141517] font-medium">Sarail, Brahmanbaria, Bangladesh (Victor Bags Factory Ltd.)</span>
-                            </div>
-
-                        </div>
+                                <tr class="p-3 flex justify-between items-center gap-4">
+                                    <th scope="row" class="text-[#5C5E64] font-mono text-[11px] font-normal text-left">Factory of Origin</th>
+                                    <td class="text-[#141517] text-right font-medium">Sarail, Brahmanbaria, Bangladesh (Victor Bags Factory Ltd.)</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- ARCHITECTURAL FEATURES CHECKLIST -->
@@ -372,11 +378,13 @@
             document.querySelectorAll('.gallery-thumb').forEach(btn => {
                 btn.classList.remove('border-[#FA8231]', 'opacity-100');
                 btn.classList.add('border-[#E5E1D8]', 'opacity-60');
+                btn.setAttribute('aria-current', 'false');
             });
 
             if (buttonEl) {
                 buttonEl.classList.remove('border-[#E5E1D8]', 'opacity-60');
                 buttonEl.classList.add('border-[#FA8231]', 'opacity-100');
+                buttonEl.setAttribute('aria-current', 'true');
             }
         }
     </script>
