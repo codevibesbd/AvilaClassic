@@ -16,6 +16,12 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ProductSeeder::class,
+            AdminSeeder::class,
+            SettingsSeeder::class,
+            HeroSlideSeeder::class,
+            HomepageContentSeeder::class,
+            MenuItemSeeder::class,
+            SitePageSeeder::class,
         ]);
     }
 }

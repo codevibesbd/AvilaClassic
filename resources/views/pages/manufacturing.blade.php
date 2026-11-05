@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Manufacturing Facilities & QA Testing Labs | Victor Bags & Avila Classic')
-@section('meta_description', 'Explore Victor Bags Factory Ltd.’s manufacturing capabilities in Bangladesh: 15 production lines, 880 machines, 200,000 units/mo capacity, C-TPAT, BSCI, and ISO 14001 certified.')
+@section('title', isset($page) && $page->meta_title ? $page->meta_title : 'Manufacturing Facilities & QA Testing Labs | Victor Bags & Avila Classic')
+@section('meta_description', isset($page) && $page->meta_description ? $page->meta_description : 'Explore Victor Bags Factory Ltd.’s manufacturing capabilities in Bangladesh: 15 production lines, 880 machines, 200,000 units/mo capacity, C-TPAT, BSCI, and ISO 14001 certified.')
 
 @section('content')
 
@@ -12,14 +12,14 @@
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 bg-[#FA8231]"></span>
                     <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#FA8231]">
-                        Manufacturing Architecture • Victor Bags Factory Ltd.
+                        {{ isset($page) && $page->banner_subtitle ? $page->banner_subtitle : 'Manufacturing Architecture • Victor Bags Factory Ltd.' }}
                     </span>
                 </div>
                 <h1 class="font-serif text-4xl sm:text-6xl font-medium text-[#141517] tracking-tight leading-[1.1]">
-                    The engineering behind every seam.
+                    {{ isset($page) && $page->banner_title ? $page->banner_title : 'The engineering behind every seam.' }}
                 </h1>
                 <p class="text-base sm:text-lg text-[#5C5E64] font-light leading-relaxed">
-                    Operating 15 specialized production lines with 880 machines at our 1.42-acre manufacturing complex in Sarail, Brahmanbaria, Bangladesh, supported by corporate headquarters in Uttara, Dhaka and sample development in Quanzhou, China.
+                    {{ isset($page) && isset($page->content['intro_body']) ? $page->content['intro_body'] : 'Operating 15 specialized production lines with 880 machines at our 1.42-acre manufacturing complex in Sarail, Brahmanbaria, Bangladesh, supported by corporate headquarters in Uttara, Dhaka and sample development in Quanzhou, China.' }}
                 </p>
             </div>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Sustainability & Certified Materials | Avila Classic')
-@section('meta_description', 'Discover Avila Classic’s sustainable manufacturing initiatives: GRS-certified recycled ocean-bound rPET fabrics, zero-fluorocarbon DWR, and BSCI audited ethical labor.')
+@section('title', isset($page) && $page->meta_title ? $page->meta_title : 'Sustainability & Certified Materials | Avila Classic')
+@section('meta_description', isset($page) && $page->meta_description ? $page->meta_description : 'Discover Avila Classic’s sustainable manufacturing initiatives: GRS-certified recycled ocean-bound rPET fabrics, zero-fluorocarbon DWR, and BSCI audited ethical labor.')
 
 @section('content')
 
@@ -12,14 +12,14 @@
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 bg-[#FA8231]"></span>
                     <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#FA8231]">
-                        Circular Materials & ESG Standards
+                        {{ isset($page) && $page->banner_subtitle ? $page->banner_subtitle : 'Circular Materials & ESG Standards' }}
                     </span>
                 </div>
                 <h1 class="font-serif text-4xl sm:text-6xl font-medium text-[#141517] tracking-tight leading-[1.1]">
-                    Crafted from recycled ocean plastics and organic fibers.
+                    {{ isset($page) && $page->banner_title ? $page->banner_title : 'Crafted from recycled ocean plastics and organic fibers.' }}
                 </h1>
                 <p class="text-base sm:text-lg text-[#5C5E64] font-light leading-relaxed">
-                    How Victor Bags Factory Ltd. in Bangladesh diverts post-consumer plastic bottles into high-tenacity travel gear textiles, certified under ISO 14001 and the Global Recycled Standard (GRS).
+                    {{ isset($page) && isset($page->content['intro_body']) ? $page->content['intro_body'] : 'How Victor Bags Factory Ltd. in Bangladesh diverts post-consumer plastic bottles into high-tenacity travel gear textiles, certified under ISO 14001 and the Global Recycled Standard (GRS).' }}
                 </p>
             </div>
         </div>

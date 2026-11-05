@@ -22,6 +22,11 @@ class Product extends Model
         return 'slug';
     }
 
+    public function getColorsAttribute(): array
+    {
+        return $this->color_options ?? [];
+    }
+
     public function scopeFeatured($query)
     {
         return $query->where('is_featured', true);

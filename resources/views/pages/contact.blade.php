@@ -106,22 +106,26 @@
                         <div class="space-y-3 text-xs text-[#5C5E64] border-t border-[#E5E1D8] pt-4">
                             <div>
                                 <strong class="text-[#141517] block mb-0.5">Physical Address:</strong>
-                                <span>37-15 73rd Street, Store L4<br>Jackson Heights, NY 11372, USA</span>
+                                <span>{{ setting('showroom_address', '73-05 37th Road, Jackson Heights, NY 11372, USA') }}</span>
                             </div>
 
                             <div>
                                 <strong class="text-[#141517] block mb-0.5">Telephone:</strong>
-                                <a href="tel:+16462069437" class="hover:text-[#FA8231] font-semibold text-[#141517]">+1 (646) 206-9437</a>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', setting('contact_phone', '+16462069437')) }}" class="hover:text-[#FA8231] font-semibold text-[#141517]">
+                                    {{ setting('contact_phone', '+1 (646) 206-9437') }}
+                                </a>
                             </div>
 
                             <div>
                                 <strong class="text-[#141517] block mb-0.5">Email Inquiries:</strong>
-                                <a href="mailto:info@avilaclassic.com" class="text-[#FA8231] font-semibold underline">info@avilaclassic.com</a>
+                                <a href="mailto:{{ setting('contact_email', 'info@avilaclassic.com') }}" class="text-[#FA8231] font-semibold underline">
+                                    {{ setting('contact_email', 'info@avilaclassic.com') }}
+                                </a>
                             </div>
 
                             <div>
                                 <strong class="text-[#141517] block mb-0.5">Desk & Showroom Hours:</strong>
-                                <span>Monday – Friday, 9:00 AM – 6:00 PM EST (Appointments available for B2B buyer reviews)</span>
+                                <span>{{ setting('operating_hours', 'Monday – Friday, 9:00 AM – 6:00 PM EST (Appointments available for B2B buyer reviews)') }}</span>
                             </div>
                         </div>
                     </div>
@@ -180,7 +184,17 @@
                         </div>
 
                         <!-- Direct Form -->
-                        <form id="sourcing-inquiry-form" action="mailto:info@avilaclassic.com" method="GET" class="space-y-4 text-xs">
+                        @if(session('success'))
+                            <div class="p-4 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded text-xs font-mono mb-4 flex items-center gap-2" role="alert" aria-live="polite">
+                                <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>{{ session('success') }}</span>
+                            </div>
+                        @endif
+
+                        <form id="sourcing-inquiry-form" action="{{ route('contact.submit') }}" method="POST" class="space-y-4 text-xs">
+                            @csrf
                             
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="space-y-1.5">

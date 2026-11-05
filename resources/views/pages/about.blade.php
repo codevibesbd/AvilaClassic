@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@section('title', 'Corporate Profile & Enterprise Heritage | Avila Classic')
-@section('meta_description', 'Learn about Avila Classic Trading Inc., the U.S. wholesale distribution affiliate of Victor Bags Factory Ltd. (Bangladesh). Discover our corporate background, executive leadership, and manufacturing scale.')
-@section('og_image', asset('images/banner/about-banner.jpg'))
+@section('title', isset($page) && $page->meta_title ? $page->meta_title : 'Corporate Profile & Enterprise Heritage | Avila Classic')
+@section('meta_description', isset($page) && $page->meta_description ? $page->meta_description : 'Learn about Avila Classic Trading Inc., the U.S. wholesale distribution affiliate of Victor Bags Factory Ltd. (Bangladesh). Discover our corporate background, executive leadership, and manufacturing scale.')
+@section('og_image', isset($page) && $page->banner_image ? $page->banner_image : asset('images/banner/about-banner.jpg'))
 
 @section('schema')
 @php
     $aboutSchema = [
         '@context' => 'https://schema.org',
         '@type' => 'AboutPage',
-        'name' => 'Corporate Profile & Enterprise Heritage | Avila Classic',
+        'name' => isset($page) && $page->meta_title ? $page->meta_title : 'Corporate Profile & Enterprise Heritage | Avila Classic',
         'url' => route('about'),
-        'description' => 'Avila Classic Trading Inc. connects U.S. retailers, regional chains, e-commerce brands, and corporate buyers directly with Victor Bags Factory Ltd.',
+        'description' => isset($page) && $page->meta_description ? $page->meta_description : 'Avila Classic Trading Inc. connects U.S. retailers, regional chains, e-commerce brands, and corporate buyers directly with Victor Bags Factory Ltd.',
         'primaryImageOfPage' => [
             '@type' => 'ImageObject',
-            'url' => asset('images/banner/about-banner.jpg'),
+            'url' => isset($page) && $page->banner_image ? $page->banner_image : asset('images/banner/about-banner.jpg'),
             'width' => 1600,
             'height' => 800,
             'caption' => 'Avila Classic Trading Inc. Bags, Luggage, and Travel Gear Collection Banner',
@@ -23,7 +23,7 @@
             '@type' => 'Organization',
             'name' => 'Avila Classic Trading Inc.',
             'url' => url('/'),
-            'logo' => asset('images/banner/about-banner.jpg'),
+            'logo' => isset($page) && $page->banner_image ? $page->banner_image : asset('images/banner/about-banner.jpg'),
             'telephone' => '+1-646-206-9437',
             'email' => 'info@avilaclassic.com',
         ],
@@ -43,21 +43,21 @@
                 <div class="flex items-center gap-2">
                     <span class="w-2 h-2 bg-[#FA8231]"></span>
                     <span class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#FA8231]">
-                        Enterprise Heritage • Victor Bags Group
+                        {{ isset($page) && $page->banner_subtitle ? $page->banner_subtitle : 'Enterprise Heritage • Victor Bags Group' }}
                     </span>
                 </div>
                 <h1 class="font-serif text-4xl sm:text-6xl font-medium text-[#141517] tracking-tight leading-[1.1] text-balance">
-                    Two decades of manufacturing expertise. Direct to U.S. retail.
+                    {{ isset($page) && $page->banner_title ? $page->banner_title : 'Two decades of manufacturing expertise. Direct to U.S. retail.' }}
                 </h1>
                 <p class="text-base sm:text-lg text-[#5C5E64] font-light leading-relaxed">
-                    Avila Classic Trading Inc. connects U.S. retailers, regional chains, e-commerce brands, and corporate buyers directly with Victor Bags Factory Ltd., one of Bangladesh's premier luggage and bag manufacturers.
+                    {{ isset($page) && isset($page->content['intro_body']) ? $page->content['intro_body'] : 'Avila Classic Trading Inc. connects U.S. retailers, regional chains, e-commerce brands, and corporate buyers directly with Victor Bags Factory Ltd., one of Bangladesh\'s premier luggage and bag manufacturers.' }}
                 </p>
             </div>
 
             <!-- Corporate Heritage Banner -->
             <div class="mt-10 lg:mt-12">
                 <div class="p-2 sm:p-3 bg-white border border-[#E5E1D8] shadow-xs">
-                    <img src="{{ asset('images/banner/about-banner.jpg') }}" 
+                    <img src="{{ isset($page) && $page->banner_image ? $page->banner_image : asset('images/banner/about-banner.jpg') }}" 
                          alt="Avila Classic Trading Inc. wholesale luggage, polycarbonate spinner cases, and travel gear collection - U.S. wholesale distributor for Victor Bags Factory Ltd."
                          title="Avila Classic Trading Inc. - Bags, Luggage, and Travel Gear"
                          width="1600" 
